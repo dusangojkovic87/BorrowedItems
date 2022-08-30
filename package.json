@@ -1,0 +1,17 @@
+{
+  "name": "borroweditems",
+  "version": "1.0.0",
+  "description": "app for borrowed items",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [],
+  "author": "Dusan Gojkovic",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^20.1.0",
+    "electron-reloader": "^1.2.3"
+  }
+}
