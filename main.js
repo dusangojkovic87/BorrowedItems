@@ -5,10 +5,9 @@ const knex = require("./dbConnection/db");
 const createMainWindow = require("./mainWindow/mainWindow");
 const createTableOfItemsIfNotExists = require("./schema/schema");
 const openAddItemWindow = require("./addItemsWindow/addItemsWindow");
+const reloader = require("./electron-reloader/reloader");
 
-try {
-  require("electron-reloader")(module);
-} catch (_) {}
+reloader();
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
