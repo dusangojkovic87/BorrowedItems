@@ -1,38 +1,14 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
-const knex = require("knex")({
-  client: "sqlite3",
-  connection: {
-    filename: "./items.sqlite",
-  },
-  useNullAsDefault: true,
-});
+const knex = require("./dbConnection/db");
+const createMainWindow = require("./mainWindow/mainWindow");
+const createTableOfItemsIfNotExists = require("./schema/schema");
+const openAddItemWindow = require("./addItemsWindow/addItemsWindow");
 
 try {
   require("electron-reloader")(module);
 } catch (_) {}
-
-function createWindow() {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    minWidth: 500,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-      nodeIntegration: true,
-      contextIsolation: false,
-    },
-  });
-
-  // and load the index.html of the app.
-  mainWindow.setMenu(null);
-  mainWindow.loadFile("index.html");
-
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
-}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -40,7 +16,7 @@ function createWindow() {
 app.whenReady().then(() => {
   createTableOfItemsIfNotExists();
 
-  createWindow();
+  createMainWindow();
 
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the
@@ -56,46 +32,7 @@ app.on("window-all-closed", function () {
   if (process.platform !== "darwin") app.quit();
 });
 
-//sqlite
-function createTableOfItemsIfNotExists() {
-  knex.schema.hasTable("items").then((exists) => {
-    if (!exists) {
-      return knex.schema.createTable("items", function (t) {
-        t.increments("id").primary();
-        t.string("name", 100);
-        t.string("surname", 100);
-        t.string("item", 100);
-        t.string("dateBorrowed", 100);
-        t.string("dateReturned", 100);
-        t.string("location", 100);
-        t.string("contact", 100);
-        t.string("itemImage").notNullable().defaultTo("default.jpg");
-        t.boolean("isReturned").notNullable().defaultTo(false);
-      });
-    }
-  });
-}
-
-function openAddItemWindow() {
-  let addItemModal = new BrowserWindow({
-    width: 600,
-    height: 400,
-    fullscreenable: false,
-    minimizable: true,
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  });
-
-  addItemModal.loadFile("addItem.html");
-  addItemModal.setMenu(null);
-  addItemModal.focus();
-
-  addItemModal.on("closed", () => {
-    addItemModal = null;
-  });
-}
-
+//Events
 ipcMain.on("open_addItem", (event, args) => {
   openAddItemWindow();
 });
