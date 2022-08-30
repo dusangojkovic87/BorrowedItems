@@ -1,4 +1,5 @@
 const { BrowserWindow } = require("electron");
+const path = require("path");
 
 module.exports = function openAddItemWindow() {
   let addItemModal = new BrowserWindow({

@@ -4,8 +4,9 @@ const path = require("path");
 const knex = require("./dbConnection/db");
 const createMainWindow = require("./mainWindow/mainWindow");
 const createTableOfItemsIfNotExists = require("./schema/schema");
-const openAddItemWindow = require("./addItemsWindow/addItemsWindow");
 const reloader = require("./electron-reloader/reloader");
+//events
+require("./mainWindow/mainWindowEvents");
 
 reloader();
 
@@ -29,9 +30,4 @@ app.whenReady().then(() => {
 // explicitly with Cmd + Q.
 app.on("window-all-closed", function () {
   if (process.platform !== "darwin") app.quit();
-});
-
-//Events
-ipcMain.on("open_addItem", (event, args) => {
-  openAddItemWindow();
 });
