@@ -1,6 +1,14 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
+const knex = require("knex")({
+  client: "sqlite3",
+  connection: {
+    filename: "./items.sqlite",
+  },
+  useNullAsDefault: true,
+});
+
 try {
   require("electron-reloader")(module);
 } catch (_) {}
@@ -30,6 +38,7 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  createTableOfItemsIfNotExists();
   createWindow();
 
   app.on("activate", function () {
@@ -46,5 +55,22 @@ app.on("window-all-closed", function () {
   if (process.platform !== "darwin") app.quit();
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+//sqlite
+function createTableOfItemsIfNotExists() {
+  knex.schema.hasTable("items").then((exists) => {
+    if (!exists) {
+      return knex.schema.createTable("items", function (t) {
+        t.increments("id").primary();
+        t.string("name", 100);
+        t.string("surname", 100);
+        t.string("item", 100);
+        t.string("dateBorrowed", 100);
+        t.string("dateReturned", 100);
+        t.string("location", 100);
+        t.string("contact", 100);
+        t.string("itemImage").notNullable().defaultTo("default.jpg");
+        t.boolean("isReturned").notNullable().defaultTo(false);
+      });
+    }
+  });
+}

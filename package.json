@@ -13,5 +13,9 @@
   "devDependencies": {
     "electron": "^20.1.0",
     "electron-reloader": "^1.2.3"
+  },
+  "dependencies": {
+    "knex": "^2.2.0",
+    "sqlite3": "^5.0.11"
   }
 }
