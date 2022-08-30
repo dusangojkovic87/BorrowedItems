@@ -37,8 +37,8 @@
 
 .search-inner-wrp button {
   height: 30px;
-  background-color: var(--faded);
-  color: black;
+  background-color: rgb(241, 231, 231);
+  color: rgb(110, 105, 105);
   border: 0;
   border-radius: 8px;
   padding: 10px;
@@ -46,4 +46,5 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border: 2px solid var(--inverse);
 }

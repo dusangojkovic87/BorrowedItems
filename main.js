@@ -39,6 +39,7 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createTableOfItemsIfNotExists();
+
   createWindow();
 
   app.on("activate", function () {
@@ -74,3 +75,27 @@ function createTableOfItemsIfNotExists() {
     }
   });
 }
+
+function openAddItemWindow() {
+  let addItemModal = new BrowserWindow({
+    width: 600,
+    height: 400,
+    fullscreenable: false,
+    minimizable: true,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
+
+  addItemModal.loadFile("addItem.html");
+  addItemModal.setMenu(null);
+  addItemModal.focus();
+
+  addItemModal.on("closed", () => {
+    addItemModal = null;
+  });
+}
+
+ipcMain.on("open_addItem", (event, args) => {
+  openAddItemWindow();
+});
