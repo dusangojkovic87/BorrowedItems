@@ -2,11 +2,11 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const knex = require("./dbConnection/db");
-const createMainWindow = require("./mainWindow/mainWindow");
+const createMainWindow = require("./Windows/mainWindow/mainWindow");
 const createTableOfItemsIfNotExists = require("./schema/schema");
 const reloader = require("./electron-reloader/reloader");
-//events
-require("./mainWindow/mainWindowEvents");
+//events for main window
+require("./Windows/mainWindow/mainWindowEvents");
 
 reloader();
 

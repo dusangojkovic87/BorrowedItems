@@ -1,5 +1,5 @@
 const { ipcMain } = require("electron");
-const DbCommands = require("../DbCommands/DbCommands");
+const DbCommands = require("../../DbCommands/DbCommands");
 const openAddItemWindow = require("../addItemsWindow/addItemsWindow");
 
 ipcMain.on("open_addItemModal", (event, args) => {
