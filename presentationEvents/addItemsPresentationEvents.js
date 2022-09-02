@@ -18,4 +18,7 @@ exports.addItemWindowCommands = {
       console.log(data);
     });
   },
+  closeAddItemWindow: () => {
+    ipcRenderer.send("closeAddItemWin", "");
+  },
 };

@@ -1,5 +1,6 @@
 const { ipcRenderer } = require("electron");
 const addItemWindowEvents = require("./presentationEvents/addItemsPresentationEvents");
+const SharedPresentationEvents = require("./presentationEvents/SharedEvents");
 
 document.addEventListener("DOMContentLoaded", (event) => {
   const addItemBtn = document.querySelector(".addItem__btn");
@@ -8,7 +9,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     addItemBtn.addEventListener("click", (event) => {
       event.preventDefault();
       addItemWindowEvents.addItemWindowCommands.addItemToDb();
-      ipcRenderer.send("getItems", "");
+      //reload items
+      SharedPresentationEvents.SharedCommands.GetItems();
     });
   }
 });

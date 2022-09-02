@@ -1,16 +1,11 @@
 const { ipcRenderer } = require("electron");
 const mainWindowPresentationEvents = require("./presentationEvents/mainWindowPresentationEvents");
+const SharedPresentationEvents = require("./presentationEvents/SharedEvents");
 
 document.addEventListener("DOMContentLoaded", (event) => {
   //get items event
-  ipcRenderer.send("getItems", "");
-  ipcRenderer.on("itemsRecived", (event, args) => {
-    if (args) {
-      //load item to DOM
-      mainWindowPresentationEvents.mainWindowCommands.loadItems(args);
-    }
-  });
-
+  SharedPresentationEvents.SharedCommands.GetItems();
+  mainWindowPresentationEvents.mainWindowCommands.loadItemsWhenRecived();
   //opens add item window
   mainWindowPresentationEvents.mainWindowCommands.openAddItemModal();
 });
