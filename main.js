@@ -15,7 +15,6 @@ reloader();
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createTableOfItemsIfNotExists();
-
   createMainWindow();
 
   app.on("activate", function () {

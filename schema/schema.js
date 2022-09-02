@@ -12,7 +12,7 @@ module.exports = function createTableOfItemsIfNotExists() {
         t.string("dateReturned", 100);
         t.string("location", 100);
         t.string("contact", 100);
-        t.string("itemImage").notNullable().defaultTo("default.jpg");
+        t.string("itemImage").notNullable().defaultTo("images/default.png");
         t.boolean("isReturned").notNullable().defaultTo(false);
       });
     }

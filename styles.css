@@ -1,11 +1,22 @@
 :root {
   --primary: #0275d8;
+  --primary-light: #b9d9f5;
   --success: #5cb85c;
   --info: #5bc0de;
   --warning: #f0ad4e;
   --danger: #d9534f;
   --faded: #f7f7f7;
   --inverse: #292b2c;
+}
+
+html,
+body {
+  font-family: "Montserrat";
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("fonts/Montserrat-Regular.ttf");
 }
 
 .search-container {
@@ -37,14 +48,123 @@
 
 .search-inner-wrp button {
   height: 30px;
-  background-color: rgb(241, 231, 231);
-  color: rgb(110, 105, 105);
-  border: 0;
+  font-family: "Montserrat";
+  background-color: #5e6061;
+  color: white;
+  border: 1px solid var(--primary-light);
   border-radius: 8px;
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 2px solid var(--inverse);
 }
+
+.item-container {
+  position: relative;
+  width: 400px;
+  height: 100px;
+  display: flex;
+}
+
+.item-details-wrp {
+  position: relative;
+  display: flex;
+}
+
+.item-details-wrp span {
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+  color: var(--inverse);
+}
+.items {
+  position: relative;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+/*item*/
+.item-container {
+  position: relative;
+  width: 90%;
+  height: 130px;
+  display: flex;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: var(--primary-light);
+  margin: 1rem;
+  -webkit-box-shadow: 12px 19px 40px -25px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 12px 19px 40px -25px rgba(0, 0, 0, 0.75);
+  box-shadow: 12px 19px 40px -25px rgba(0, 0, 0, 0.75);
+}
+
+.item-container .item-img-wrp {
+  position: relative;
+  width: 100px;
+  height: 100%;
+}
+
+.item__name {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.borrower__name {
+  font-size: 1rem;
+}
+
+.date__borrowed {
+  font-size: 1rem;
+}
+
+.item-container .item-img-wrp img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.item-container ul li {
+  list-style: none;
+  padding: 1px;
+}
+
+.item-nav-btn-wrp {
+  position: absolute;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  right: 5px;
+}
+.details__label {
+  font-size: 0.7rem;
+}
+
+.item-nav-btn-wrp button {
+  position: relative;
+  width: 90%;
+  height: 30px;
+  margin: 1rem;
+  cursor: pointer;
+  font-family: "Montserrat";
+  font-weight: bold;
+}
+
+.details__btn {
+  background-color: var(--warning);
+  color: black;
+  border: 1px solid var(--primary);
+}
+
+.delete__btn {
+  background-color: var(--danger);
+  border: 1px solid var(--primary);
+}
+
+/*end item*/
