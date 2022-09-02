@@ -1,6 +1,5 @@
 const { ipcMain } = require("electron");
-const knex = require("../dbConnection/db");
-
+const DbCommands = require("../DbCommands/DbCommands");
 const openAddItemWindow = require("../addItemsWindow/addItemsWindow");
 
 ipcMain.on("open_addItemModal", (event, args) => {
@@ -8,12 +7,9 @@ ipcMain.on("open_addItemModal", (event, args) => {
 });
 
 ipcMain.on("getItems", (event, args) => {
-  getItemsFromDb().then((data) => {
-    console.log(data);
-    event.reply("itemsRecived", data);
+  DbCommands.getItemsFromDb().then((data) => {
+    if (data) {
+      event.reply("itemsRecived", data);
+    }
   });
 });
-
-function getItemsFromDb() {
-  return knex.select().table("items");
-}
