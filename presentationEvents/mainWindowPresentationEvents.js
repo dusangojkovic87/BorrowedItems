@@ -33,8 +33,7 @@ exports.mainWindowCommands = {
       </div>
   
         `;
+      itemsContainer.innerHTML += itemWrp;
     });
-
-    itemsContainer.innerHTML += itemWrp;
   },
 };

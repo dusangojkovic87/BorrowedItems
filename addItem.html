@@ -4,9 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Add Item</title>
   </head>
   <body>
-    test
+    <div class="add-item-container">
+      <form id="addItemForm">
+        <input type="text" name="name" placeholder="Borrower name.." />
+        <input type="text" name="surname" placeholder="Borrower surname.." />
+        <input type="text" name="item" placeholder="Item borrowed.." />
+        <label for="dateBorrowed">date borrowed:</label>
+        <input type="date" name="dateBorrowed" />
+        <input type="text" name="location" placeholder="Location.." />
+        <input type="text" name="contact" placeholder="Contact.." />
+      </form>
+      <button type="submit" class="addItem__btn" form="addItemForm">add</button>
+    </div>
+    <script src="./addItemRenderer.js"></script>
   </body>
 </html>
