@@ -25,9 +25,9 @@ function loadItemsIntoDOM(data) {
   let firstBtn = document.querySelector(".first__btn");
   let lastBtn = document.querySelector(".last__btn");
 
-  //test
+  //init load
   let page = 0;
-  for (let i = 0; i < page + 3; i++) {
+  for (let i = 0; i < page + 2; i++) {
     itemWrp += itemHtmlTemplate(data[i]);
   }
 
@@ -36,13 +36,13 @@ function loadItemsIntoDOM(data) {
   //next pagination
   nextBtn.addEventListener("click", (event) => {
     let len = data.length;
-    if (page == len - 3) {
+    if (page == len - 2) {
       page = 0;
     } else {
-      page += 3;
+      page += 2;
     }
     itemWrp = "";
-    for (let i = page; i < page + 3; i++) {
+    for (let i = page; i < page + 2; i++) {
       itemsContainer.innerHTML = "";
       itemWrp += itemHtmlTemplate(data[i]);
     }
@@ -53,13 +53,13 @@ function loadItemsIntoDOM(data) {
   itemWrp = "";
   previousBtn.addEventListener("click", (event) => {
     let len = data.length;
-    if (page == len - 3 || page == 0) {
+    if (page == len - 2 || page == 0) {
       page = 0;
     } else {
-      page -= 3;
+      page -= 2;
     }
     itemWrp = "";
-    for (let i = page; i < page + 3; i++) {
+    for (let i = page; i < page + 2; i++) {
       console.log("index", i);
       itemsContainer.innerHTML = "";
       itemWrp += itemHtmlTemplate(data[i]);
@@ -71,7 +71,7 @@ function loadItemsIntoDOM(data) {
   firstBtn.addEventListener("click", (event) => {
     page = 0;
     itemWrp = "";
-    for (let i = page; i < page + 3; i++) {
+    for (let i = page; i < page + 2; i++) {
       itemsContainer.innerHTML = "";
       itemWrp += itemHtmlTemplate(data[i]);
     }
@@ -80,9 +80,9 @@ function loadItemsIntoDOM(data) {
 
   //last pagination
   lastBtn.addEventListener("click", (event) => {
-    page = data.length - 3;
+    page = data.length - 2;
     itemWrp = "";
-    for (let i = page; i < page + 3; i++) {
+    for (let i = page; i < page + 2; i++) {
       itemsContainer.innerHTML = "";
       itemWrp += itemHtmlTemplate(data[i]);
     }
