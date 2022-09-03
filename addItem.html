@@ -10,13 +10,22 @@
   <body>
     <div class="add-item-container">
       <form id="addItemForm">
-        <input type="text" name="name" placeholder="Borrower name.." />
-        <input type="text" name="surname" placeholder="Borrower surname.." />
-        <input type="text" name="item" placeholder="Item borrowed.." />
-        <label for="dateBorrowed">date borrowed:</label>
-        <input type="date" name="dateBorrowed" />
-        <input type="text" name="location" placeholder="Location.." />
-        <input type="text" name="contact" placeholder="Contact.." />
+        <div>
+          <label for="name">Borrower name:</label>
+          <input type="text" name="name" />
+          <label for="surname">Borrower surname:</label>
+          <input type="text" name="surname" />
+          <label for="item">Item name:</label>
+          <input type="text" name="item" />
+        </div>
+        <div>
+          <label for="dateBorrowed">date borrowed:</label>
+          <input type="date" name="dateBorrowed" />
+          <label for="location">Location:</label>
+          <input type="text" name="location" />
+          <label for="contact">Contact:</label>
+          <input type="text" name="contact" />
+        </div>
       </form>
       <button type="submit" class="addItem__btn" form="addItemForm">add</button>
     </div>
