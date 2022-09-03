@@ -30,7 +30,18 @@ exports.mainWindowCommands = {
   setItemReturnStatus: () => {
     document.addEventListener("click", (e) => {
       if (e.target.classList.contains("isReturnedBtn")) {
-        console.log(e.target);
+        let id = e.target.getAttribute("data-id");
+        let isReturnedValue = e.target.value;
+        console.log(isReturnedValue);
+
+        let data = {
+          id: id,
+          isReturned: +isReturnedValue,
+        };
+
+        if (data) {
+          ipcRenderer.send("isReturnedValueChanged", data);
+        }
       }
     });
   },
@@ -47,7 +58,6 @@ function loadItemsIntoDOM(data) {
 
   console.log(data);
 
-  //init load
   let page = 0;
 
   //if no data hide pagination
@@ -72,7 +82,7 @@ function loadItemsIntoDOM(data) {
   //next pagination
   nextBtn.addEventListener("click", (event) => {
     //if only one item display it
-    if (data.length - 2 < 2) {
+    if (data.length < 2) {
       itemsContainer.innerHTML = itemHtmlTemplate(data[0]);
       return;
     }
@@ -132,7 +142,12 @@ function loadItemsIntoDOM(data) {
 }
 
 function itemHtmlTemplate(data) {
+  if (data == null || data == undefined) {
+    return "";
+  }
+
   if (data) {
+    console.log(data.isReturned == 1 ? "true" : "false");
     return `
     <div class="item-container">
     <div class="item-img-wrp">
@@ -153,20 +168,30 @@ function itemHtmlTemplate(data) {
       <form id="itemReturnedForm" >
           <div class="radio-btn-wrp">
           <label for="isReturned">yes</label>
-          <input checked=${
-            data.isReturned == 1 ? true : false
-          } class="isReturnedBtn" type="radio" name="isReturned" value="true">
+          <input data-id=${
+            data.id
+          } class="isReturnedBtn" type="radio" name="isReturned" value="1" ${
+      data.isReturned == 1 ? "checked" : ""
+    }>
           </div>
           <div class="radio-btn-wrp">
           <label for="isReturned">no</label>
-          <input checked=${
-            data.isReturned == 0 ? true : false
-          } class="isReturnedBtn" type="radio" name="isReturned" value="false">
+          <input data-id=${
+            data.id
+          } class="isReturnedBtn" type="radio" name="isReturned" value="0" ${
+      data.isReturned == 0 ? "checked" : ""
+    }>
           </div>   
       </div>
       </form>
       <button class="delete__btn" data-id=${data.id}>delete</button>
     </div>
   </div>`;
+  }
+}
+
+function setCheckbox(data) {
+  if (data == 1) {
+    return "checked";
   }
 }

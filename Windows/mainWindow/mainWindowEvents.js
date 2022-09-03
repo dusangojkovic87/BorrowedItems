@@ -28,3 +28,11 @@ ipcMain.on("deleteItemById", (event, args) => {
     });
   }
 });
+
+ipcMain.on("isReturnedValueChanged", (event, args) => {
+  if (args) {
+    DbQuery.updateReturnedStatusInDb(args.id, args.isReturned).then((data) => {
+      console.log("update", data);
+    });
+  }
+});

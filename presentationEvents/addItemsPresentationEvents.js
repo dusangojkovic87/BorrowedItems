@@ -15,7 +15,6 @@ exports.addItemWindowCommands = {
     };
     insertItemToDb(data).then((data) => {
       console.log("insert");
-      console.log(data);
     });
   },
   closeAddItemWindow: () => {

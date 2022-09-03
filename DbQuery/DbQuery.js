@@ -12,4 +12,7 @@ module.exports = {
   deleteItemFromDb(id) {
     return knex("items").where({ id: id }).del();
   },
+  updateReturnedStatusInDb: (id, value) => {
+    return knex("items").where({ id: id }).update({ isReturned: value });
+  },
 };
