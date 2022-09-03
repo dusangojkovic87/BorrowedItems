@@ -1,4 +1,5 @@
 const { ipcRenderer } = require("electron");
+const SharedPresentacionEvents = require("../presentationEvents/SharedEvents");
 
 exports.mainWindowCommands = {
   openAddItemModal: () => {
@@ -21,6 +22,7 @@ exports.mainWindowCommands = {
         let id = e.target.getAttribute("data-id");
         if (id) {
           ipcRenderer.send("deleteItemById", id);
+          SharedPresentacionEvents.SharedCommands.GetItems();
         }
       }
     });
