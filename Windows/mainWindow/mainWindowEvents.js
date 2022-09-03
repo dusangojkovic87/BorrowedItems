@@ -1,5 +1,6 @@
 const { ipcMain } = require("electron");
 const DbCommands = require("../../DbCommands/DbCommands");
+const DbQuery = require("../../DbQuery/DbQuery");
 const openAddItemWindow = require("../addItemsWindow/addItemsWindow");
 
 ipcMain.on("open_addItemModal", (event, args) => {
@@ -12,4 +13,12 @@ ipcMain.on("getItems", (event, args) => {
       event.reply("itemsRecived", data);
     }
   });
+});
+
+ipcMain.on("deleteItemById", (event, args) => {
+  if (args) {
+    DbQuery.deleteItemFromDb(args).then((data) => {
+      console.log("izbrisan");
+    });
+  }
 });

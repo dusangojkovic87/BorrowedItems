@@ -9,4 +9,7 @@ module.exports = {
       dateBorrowed: data.dateBorrowed,
     });
   },
+  deleteItemFromDb(id) {
+    return knex("items").where({ id: id }).del();
+  },
 };

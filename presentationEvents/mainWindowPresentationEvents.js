@@ -15,6 +15,16 @@ exports.mainWindowCommands = {
       }
     });
   },
+  deleteItem: () => {
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("delete__btn")) {
+        let id = e.target.getAttribute("data-id");
+        if (id) {
+          ipcRenderer.send("deleteItemById", id);
+        }
+      }
+    });
+  },
 };
 
 function loadItemsIntoDOM(data) {
@@ -24,9 +34,27 @@ function loadItemsIntoDOM(data) {
   let previousBtn = document.querySelector(".previous__btn");
   let firstBtn = document.querySelector(".first__btn");
   let lastBtn = document.querySelector(".last__btn");
+  let paginationControls = document.querySelector(".pagination-controls");
+
+  console.log(data);
 
   //init load
   let page = 0;
+
+  //if no data hide pagination
+  if (data.length == 0) {
+    itemsContainer.innerHTML = "No items in database";
+    paginationControls.style.display = "none";
+    return;
+  }
+
+  //if only one item hide pagination
+  if (data.length < 2) {
+    itemsContainer.innerHTML = itemHtmlTemplate(data[0]);
+    paginationControls.style.display = "none";
+    return;
+  }
+
   for (let i = 0; i < page + 2; i++) {
     itemWrp += itemHtmlTemplate(data[i]);
   }
@@ -36,7 +64,7 @@ function loadItemsIntoDOM(data) {
   //next pagination
   nextBtn.addEventListener("click", (event) => {
     let len = data.length;
-    if (page == len - 2) {
+    if (page == len - 2 || page > len - 2) {
       page = 0;
     } else {
       page += 2;
@@ -91,23 +119,25 @@ function loadItemsIntoDOM(data) {
 }
 
 function itemHtmlTemplate(data) {
-  return `
-  <div class="item-container">
-  <div class="item-img-wrp">
-    <img src=${data.itemImage} alt=${data.itemImage} />
-  </div>
-  <div class="item-details-wrp">
-    <ul>
-      <li class="item__name">${data.item}</li>
-      <li class="details__label">Borrowed to:</li>
-      <li class="borrower__name">${data.name} ${data.surname}</li>
-      <li class="details__label">Date borrowed:</li>
-      <li class="date__borrowed">${data.dateBorrowed}</li>
-    </ul>
-  </div>
-  <div class="item-nav-btn-wrp">
-    <button class="details__btn">details</button>
-    <button class="delete__btn">delete</button>
-  </div>
-</div>`;
+  if (data) {
+    return `
+    <div class="item-container">
+    <div class="item-img-wrp">
+      <img src=${data.itemImage} alt=${data.itemImage} />
+    </div>
+    <div class="item-details-wrp">
+      <ul>
+        <li class="item__name">${data.item}</li>
+        <li class="details__label">Borrowed to:</li>
+        <li class="borrower__name">${data.name} ${data.surname}</li>
+        <li class="details__label">Date borrowed:</li>
+        <li class="date__borrowed">${data.dateBorrowed}</li>
+      </ul>
+    </div>
+    <div class="item-nav-btn-wrp">
+      <button class="details__btn">details</button>
+      <button class="delete__btn" data-id=${data.id}>delete</button>
+    </div>
+  </div>`;
+  }
 }

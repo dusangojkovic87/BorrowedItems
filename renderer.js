@@ -8,4 +8,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   mainWindowPresentationEvents.mainWindowCommands.loadItemsWhenRecived();
   //opens add item window
   mainWindowPresentationEvents.mainWindowCommands.openAddItemModal();
+  //delete item event
+  mainWindowPresentationEvents.mainWindowCommands.deleteItem();
 });
