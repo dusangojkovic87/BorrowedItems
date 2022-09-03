@@ -244,3 +244,16 @@ body {
   color: white;
   border-radius: 4px;
 }
+
+.isReturned-wrp {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.isReturned-wrp label {
+  font-size: 0.8rem;
+  padding-left: 5px;
+}

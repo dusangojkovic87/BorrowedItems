@@ -9,7 +9,6 @@ module.exports = function createTableOfItemsIfNotExists() {
         t.string("surname", 100);
         t.string("item", 100);
         t.string("dateBorrowed", 100);
-        t.string("dateReturned", 100);
         t.string("location", 100);
         t.string("contact", 100);
         t.string("itemImage").notNullable().defaultTo("images/default.png");

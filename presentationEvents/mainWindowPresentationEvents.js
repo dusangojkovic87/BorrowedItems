@@ -141,7 +141,10 @@ function itemHtmlTemplate(data) {
       </ul>
     </div>
     <div class="item-nav-btn-wrp">
-      <button class="details__btn">details</button>
+      <div class="isReturned-wrp">
+      <label>Item returned:</label>
+          <input type="checkbox" id="isReturned" name="isReturned" value="true">
+      </div>
       <button class="delete__btn" data-id=${data.id}>delete</button>
     </div>
   </div>`;
