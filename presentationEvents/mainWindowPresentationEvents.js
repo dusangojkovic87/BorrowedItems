@@ -27,6 +27,13 @@ exports.mainWindowCommands = {
       }
     });
   },
+  setItemReturnStatus: () => {
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("isReturnedBtn")) {
+        console.log(e.target);
+      }
+    });
+  },
 };
 
 function loadItemsIntoDOM(data) {
@@ -143,7 +150,14 @@ function itemHtmlTemplate(data) {
     <div class="item-nav-btn-wrp">
       <div class="isReturned-wrp">
       <label>Item returned:</label>
-          <input type="checkbox" id="isReturned" name="isReturned" value="true">
+          <div class="radio-btn-wrp">
+          <label for="isReturned">yes</label>
+          <input class="isReturnedBtn" type="radio" name="isReturned" value="true">
+          </div>
+          <div class="radio-btn-wrp">
+          <label for="isReturned">no</label>
+          <input class="isReturnedBtn" type="radio" name="isReturned" value="false">
+          </div>   
       </div>
       <button class="delete__btn" data-id=${data.id}>delete</button>
     </div>

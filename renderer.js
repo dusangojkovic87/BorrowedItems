@@ -10,4 +10,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   mainWindowPresentationEvents.mainWindowCommands.openAddItemModal();
   //delete item event
   mainWindowPresentationEvents.mainWindowCommands.deleteItem();
+  //listener for item returned status
+  mainWindowPresentationEvents.mainWindowCommands.setItemReturnStatus();
 });

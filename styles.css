@@ -257,3 +257,9 @@ body {
   font-size: 0.8rem;
   padding-left: 5px;
 }
+
+.radio-btn-wrp {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
