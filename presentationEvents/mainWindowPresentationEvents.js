@@ -48,10 +48,9 @@ function loadItemsIntoDOM(data) {
     return;
   }
 
-  //if only one item hide pagination
+  //if only one item
   if (data.length < 2) {
     itemsContainer.innerHTML = itemHtmlTemplate(data[0]);
-    paginationControls.style.display = "none";
     return;
   }
 
@@ -63,6 +62,11 @@ function loadItemsIntoDOM(data) {
 
   //next pagination
   nextBtn.addEventListener("click", (event) => {
+    //if only one item display it
+    if (data.length - 2 < 2) {
+      itemsContainer.innerHTML = itemHtmlTemplate(data[0]);
+      return;
+    }
     let len = data.length;
     if (page == len - 2 || page > len - 2) {
       page = 0;
