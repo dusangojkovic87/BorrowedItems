@@ -150,15 +150,21 @@ function itemHtmlTemplate(data) {
     <div class="item-nav-btn-wrp">
       <div class="isReturned-wrp">
       <label>Item returned:</label>
+      <form id="itemReturnedForm" >
           <div class="radio-btn-wrp">
           <label for="isReturned">yes</label>
-          <input class="isReturnedBtn" type="radio" name="isReturned" value="true">
+          <input checked=${
+            data.isReturned == 1 ? true : false
+          } class="isReturnedBtn" type="radio" name="isReturned" value="true">
           </div>
           <div class="radio-btn-wrp">
           <label for="isReturned">no</label>
-          <input class="isReturnedBtn" type="radio" name="isReturned" value="false">
+          <input checked=${
+            data.isReturned == 0 ? true : false
+          } class="isReturnedBtn" type="radio" name="isReturned" value="false">
           </div>   
       </div>
+      </form>
       <button class="delete__btn" data-id=${data.id}>delete</button>
     </div>
   </div>`;
