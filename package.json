@@ -11,7 +11,7 @@
   "author": "Dusan Gojkovic",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^20.1.0",
+    "electron": "^21.1.0",
     "electron-reloader": "^1.2.3"
   },
   "dependencies": {
